@@ -1,0 +1,118 @@
+---
+title: "More information"
+author: "Joy Mahoney, Grace Rade"
+date: "Last updated on `r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    df_print: kable
+---
+```{r, echo=FALSE, message=FALSE}
+# load packages + read the data again
+library(tidyverse)
+office_full <- read.csv("the-office-lines-scripts.csv", header=TRUE, stringsAsFactors=FALSE)
+
+# change the values of the deleted column (just in case) (again)
+office_full$deleted[office_full$deleted == "TRUE"] <- "Deleted"
+office_full$deleted[office_full$deleted == "FALSE"] <- "Kept"
+
+# change the values of the deleted column to be numeric (again)
+office_full_num <- office_full %>% 
+  mutate(deleted = ifelse(deleted == "Deleted", 1, 0))
+```
+
+## Main Character Journeys
+
+Another interesting aspect of these data that we explored is the frequency at which each character’s lines are deleted. The number of deleted lines varies wildly among the main cast.  ^[https://datavizpyr.com/rotate-x-axis-text-labels-in-ggplot2/, https://r-graphics.org/recipe-bar-graph-labels]
+
+
+```{r, echo = FALSE, message = FALSE}
+# create a new data table with the number of deleted lines per character (total over the show)
+character_deleted <- office_full_num %>% 
+  filter(speaker == "Michael" | speaker == "Pam" | speaker == "Jim" | speaker == "Dwight" | speaker == "Andy" | speaker == "Stanley" | speaker == "Kevin" | speaker == "Angela" | speaker == "Meredith" | speaker == "Phyllis" | speaker == "Creed" | speaker == "Oscar" | speaker == "Kelly" | speaker == "Ryan" | speaker == "Andy" | speaker == "Darryl" | speaker == "Erin") %>% 
+  group_by(speaker) %>% 
+  summarise(num_deleted = sum(deleted))
+```
+
+
+```{r, echo=FALSE, message=FALSE}
+# plot the number of deleted lines per character
+ggplot(character_deleted, aes(x = speaker, y = num_deleted, fill = speaker)) +
+  geom_col() +
+  geom_text(aes(label = num_deleted), vjust = -.5) +
+  theme(axis.text.x = element_blank()) +
+  labs(x = "", y = "Number of Deleted Lines", title = "Number of Deleted Lines Per Character") +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1), legend.position = "none")
+```
+
+Michael Scott, Regional Manager and self-appointed office court jester, has the most deleted lines: 563 during his time on the show. Dwight Schrute–with the second highest number of deleted–is more than 200 deleted lines behind Micheal at 362, even though Michael left the show at the end of season seven and Dwight stayed for the entire run. Perhaps looking at Michael’s deleted lines over the course of the series will help figure out why he has so many.
+
+## Michael Scott's Story
+
+```{r setup, echo=FALSE, message=FALSE}
+# create a new data table with the total number of lines deleted for the character Michael Scott, per season
+michael_scott <- office_full_num %>% 
+  filter(speaker == "Michael") %>%
+  group_by(season) %>% 
+  summarise(NumDelete = sum(deleted))
+```
+
+Michael Scott, the beloved boss of the Scranton branch of Dunder Mifflin Paper Products, has been on a journey. From making crude remarks behind other office workers’ backs to accidentally promising to fund the college education of an entire class of kindergarteners, Michael has clearly been on a roller coaster of a character arc. After his unpleasant personality got poor ratings by audiences after the first season, the script writers on The Office (US) decided to revamp Michael’s character from a rude and offensive asshole to a lovable but often misguided regional manager who everyone could relate to at one point or another.^[https://screenrant.com/the-office-ways-michael-changed-throughout-the-series/]
+
+<br />To analyze the more concrete changes Michael Scott went through, we can plot the number of Michael Scott’s lines that got deleted from the original script by episode and colored by season. 
+
+
+```{r, echo=FALSE, warning = FALSE, message=FALSE}
+# plot michael's deleted lines per season
+ggplot(michael_scott, aes(x = factor(season), y = NumDelete, fill = factor(season))) +
+  geom_col() + 
+  geom_text(aes(label = NumDelete), vjust = -0.5, color = "black") +
+  theme(legend.position = "None") +
+  labs(title = "Michael's Deleted Lines Over Time", x = "Episode",  y = "Number of Deleted Lines", fill = "Season" )
+```
+
+
+
+## Toby's Journey
+
+![](https://media.giphy.com/media/TTH2ZZPXhcZGs72ivq/giphy-downsized-large.gif)
+
+Toby is the office head of HR, who Michael despises so much so that he threw a celebration when Toby left the office. This hatred often led Toby to apologize to Michael whenever he had to shut down any of the manager’s tomfoolery schemes. Below is a graph of how many times Toby said the word “sorry” during the series. ^[https://stackoverflow.com/questions/7782113/count-word-occurrences-in-r, https://jordanasprogis.medium.com/an-exploratory-character-analysis-of-michael-scott-5f2833fc6159]
+
+
+```{r, echo = FALSE, message = FALSE}
+# create a new data table with the total number of times that Toby apologizes throughout the show, grouped by season
+
+toby_sorry <- office_full %>% 
+  filter(speaker == "Toby") %>% #filter speaker
+  mutate(Sorry_count = str_count("\\bSorry\\b")) %>% #look for "sorry"
+  group_by(season) %>% #group by season
+  summarise(sorry_num = sum(Sorry_count)) #sum for the total number of 'sorry's per season
+
+```
+
+```{r, echo = FALSE, message = FALSE}
+# plot the total number of 'sorry's per season
+ggplot(toby_sorry, aes(x = factor(season), y = sorry_num, fill = factor(season))) +
+  geom_col() +
+  geom_text(aes(label = sorry_num), vjust = -0.5, color = "black") +
+  theme(legend.position = "None") +
+  labs(title = "Number of Times Toby Says Sorry", x = "Season", y = "Number of Sorrys Said")
+```
+
+
+### Refrences
+
++ Toby, Michael GIF: https://media.giphy.com/media/TTH2ZZPXhcZGs72ivq/giphy-downsized-large.gif
+
++ https://datavizpyr.com/rotate-x-axis-text-labels-in-ggplot2/
+
++ https://r-graphics.org/recipe-bar-graph-labels
+
++ https://stackoverflow.com/questions/7782113/count-word-occurrences-in-r
+
++ https://screenrant.com/the-office-ways-michael-changed-throughout-the-series/
+
++ https://jordanasprogis.medium.com/an-exploratory-character-analysis-of-michael-scott-5f2833fc6159

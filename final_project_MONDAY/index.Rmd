@@ -1,0 +1,65 @@
+---
+title: "Exploring The Office (US)"
+author: "Joy Mahoney, Grace Rade"
+date: "Last updated on `r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    df_print: kable
+---
+
+```{r, echo=FALSE, message=FALSE}
+# load packages
+library(tidyverse)
+
+#load data from .csv file
+office_full <- read.csv("https://query.data.world/s/hnel4iugami2tmmdpl4kqp6gpim4gu", header=TRUE, stringsAsFactors=FALSE)
+
+# change the values of the deleted column (just in case)
+office_full$deleted[office_full$deleted == "TRUE"] <- "Deleted"
+office_full$deleted[office_full$deleted == "FALSE"] <- "Kept"
+
+# change the values of the deleted column to be numeric
+office_full_num <- office_full %>% 
+  mutate(deleted = ifelse(deleted == "Deleted", 1, 0))
+
+# create a new data table of the proportion of deleted lines per episode
+office_proportions <- office_full_num %>% 
+  group_by(season, episode) %>% 
+  mutate(total_lines = n(), num_deleted = sum(deleted), prop_deleted = num_deleted/total_lines) %>% 
+  summarise(prop_deleted = mean(prop_deleted))
+```
+
+
+## The Office: A Cultural Institution
+
+The Office (US) ran from 2005 to 2013 and launched the popularity of mockumentary style tv shows. Following a group of office workers at the Scranton, PA branch of Dunder Mifflin Paper Company, audiences quickly fell in love with the casual format and various quirky personalities. Boasting an impressive nine season and one hundred eighty eight episode run, The Office continues to be a widely known popular cultural institution. The Office holds a special place in America’s hearts, and–based on its 8.9 average IMDB rating^[https://www.imdb.com/title/tt0386676/], almost universally known reaction gifs, and musical adaptation–it will for a long time. 
+
+
+
+![](https://media.giphy.com/media/cXblnKXr2BQOaYnTni/giphy.gif) 
+
+
+## Analyzing The Office (US) Scripts
+
+Have you ever wondered how much editing ‘The Office’ scripts had to go through before the final cut was aired on TV? Lucky for you, you have to wonder no more! Below is a scatter plot showing the proportion of deleted lines in each episode, colored by season.
+
+```{r, echo = FALSE, message = FALSE}
+# plot the proportion of deleted lines per episode in a scatter plot, colored by season
+ggplot(office_proportions, aes(x = factor(episode), y = prop_deleted, color = factor(season))) + 
+  geom_point(position = position_jitter(height = 0.05)) +
+  labs(x = "Episode", y = "Porportion of Deleted Lines", color = "Season", title = "Proportion of Deleted Lines in Each Episode")
+```
+
+
+As you can see, earlier episodes required a lot more editing than later episodes. This could be due to the writers finding the voice of each character and the show over time.
+
+### Refrences
+
++ Michael Scott GIF: https://media.giphy.com/media/cXblnKXr2BQOaYnTni/giphy.gif
+
++ https://www.datanovia.com/en/blog/ggplot-legend-title-position-and-labels/
+
++ https://www.imdb.com/title/tt0386676/

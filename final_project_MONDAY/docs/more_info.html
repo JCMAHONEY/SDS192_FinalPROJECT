@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Joy Mahoney, Grace Rade" />
+
+
+<title>More information</title>
+
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Analyzing the Office</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Welcome to The Office (US)</a>
+</li>
+<li>
+  <a href="more_info.html">Character Journeys</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">More information</h1>
+<h4 class="author">Joy Mahoney, Grace Rade</h4>
+<h4 class="date">Last updated on 2021-12-13</h4>
+
+</div>
+
+
+<div id="main-character-journeys" class="section level2">
+<h2>Main Character Journeys</h2>
+<p>Another interesting aspect of these data that we explored is the frequency at which each character’s lines are deleted. The number of deleted lines varies wildly amongst the main cast. <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p><img src="more_info_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Michael Scott, Regional Manager and self-appointed office court jester, has the most deleted lines: 563 during his time on the show. Dwight Schrute–with the second highest number of deleted–is more than 200 deleted lines behind Micheal at 362, even though Michael left the show at the end of season seven and Dwight stayed for the entire run. Perhaps looking at Michael’s deleted lines over the course of the series will help figure out why he has so many.</p>
+</div>
+<div id="michael-scotts-story" class="section level2">
+<h2>Michael Scott’s Story</h2>
+<p>Michael Scott, the beloved boss of the Scranton branch of Dunder Mifflin Paper Products, has been on a journey. From making crude remarks behind other office workers’ backs to accidentally promising to fund the college education of an entire class of kindergarteners, Michael has clearly been on a roller coaster of a character arc. After his unpleasant personality got poor ratings by audiences after the first season, the script writers on The Office (US) decided to revamp Michael’s character from a rude and offensive asshole to a lovable but often misguided regional manager who everyone could relate to at one point or another.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p><br />To analyze the more concrete changes Michael Scott went through, we can plot the number of Michael Scott’s lines that got deleted from the original script by episode and colored by season.</p>
+<p><img src="more_info_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="tobys-journey" class="section level2">
+<h2>Toby’s Journey</h2>
+<p><img src="https://media.giphy.com/media/TTH2ZZPXhcZGs72ivq/giphy-downsized-large.gif" /></p>
+<p>Toby is the office head of HR, who Michael despises so much so that he threw a celebration when Toby left the office. This hatred often led Toby to apologize to Michael whenever he had to shut down any of the manager’s tomfoolery schemes. Below is a graph of how many times Toby said the word “sorry” during the series. <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<p><img src="more_info_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div id="refrences" class="section level3">
+<h3>Refrences</h3>
+<ul>
+<li><p>Toby, Michael GIF: <a href="https://media.giphy.com/media/TTH2ZZPXhcZGs72ivq/giphy-downsized-large.gif" class="uri">https://media.giphy.com/media/TTH2ZZPXhcZGs72ivq/giphy-downsized-large.gif</a></p></li>
+<li><p><a href="https://datavizpyr.com/rotate-x-axis-text-labels-in-ggplot2/" class="uri">https://datavizpyr.com/rotate-x-axis-text-labels-in-ggplot2/</a></p></li>
+<li><p><a href="https://r-graphics.org/recipe-bar-graph-labels" class="uri">https://r-graphics.org/recipe-bar-graph-labels</a></p></li>
+<li><p><a href="https://stackoverflow.com/questions/7782113/count-word-occurrences-in-r" class="uri">https://stackoverflow.com/questions/7782113/count-word-occurrences-in-r</a></p></li>
+<li><p><a href="https://screenrant.com/the-office-ways-michael-changed-throughout-the-series/" class="uri">https://screenrant.com/the-office-ways-michael-changed-throughout-the-series/</a></p></li>
+<li><p><a href="https://jordanasprogis.medium.com/an-exploratory-character-analysis-of-michael-scott-5f2833fc6159" class="uri">https://jordanasprogis.medium.com/an-exploratory-character-analysis-of-michael-scott-5f2833fc6159</a></p></li>
+</ul>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a href="https://datavizpyr.com/rotate-x-axis-text-labels-in-ggplot2/" class="uri">https://datavizpyr.com/rotate-x-axis-text-labels-in-ggplot2/</a>, <a href="https://r-graphics.org/recipe-bar-graph-labels" class="uri">https://r-graphics.org/recipe-bar-graph-labels</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://screenrant.com/the-office-ways-michael-changed-throughout-the-series/" class="uri">https://screenrant.com/the-office-ways-michael-changed-throughout-the-series/</a><a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://stackoverflow.com/questions/7782113/count-word-occurrences-in-r" class="uri">https://stackoverflow.com/questions/7782113/count-word-occurrences-in-r</a>, <a href="https://jordanasprogis.medium.com/an-exploratory-character-analysis-of-michael-scott-5f2833fc6159" class="uri">https://jordanasprogis.medium.com/an-exploratory-character-analysis-of-michael-scott-5f2833fc6159</a><a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
